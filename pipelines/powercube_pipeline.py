@@ -127,7 +127,7 @@ class GripPipeline:
         else:
             mode = cv2.RETR_LIST
         method = cv2.CHAIN_APPROX_SIMPLE
-        contours, hierarchy = cv2.findContours(input, mode=mode, method=method)
+        _, contours,_ = cv2.findContours(input, mode=mode, method=method)
         return contours
 
     @staticmethod
@@ -175,6 +175,8 @@ class GripPipeline:
             output.append(contour)
         return output
 
+    def get_output(self):
+        return self.filter_contours_output
 
 class BlurType(Enum):
     Box_Blur = "Box_Blur"
